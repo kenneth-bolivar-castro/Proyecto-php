@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 align="center">admin</h1>
+<?php
+
+include('clase.php');
+$form = new clase($_REQUEST);
+$ver = $_GET['correo'];
+$form->buscar2($ver);
+$name = $form->nombre;
+
+
+
+?>
+
+<h1 align="center"><?php echo $name ?></h1>
+
 </body>
 </html>
