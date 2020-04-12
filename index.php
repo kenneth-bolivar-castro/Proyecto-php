@@ -40,8 +40,8 @@ if('POST'== $_SERVER['REQUEST_METHOD']){
     $form = new clase($_REQUEST);
     list($valid_email,$valid_cont)=$form->validate();
     // var_dump($form);
-    //$form->cone();
-	$form->buscar();
+    //$form->conexion();
+	$form->buscarusuarios();
 	$form->ingresar();
 	
 

@@ -2,23 +2,7 @@
 
 class clase{
    
-var $connection;
-    public function cone(){
-    
-    $host = 'database';
-    $username = 'root';
-    $password = '';
-    $dbname = 'c_php';
-    
-    $this->connection = new mysqli($host, $username, $password, $dbname);
-    if($this->connection->connect_errno) {
-        echo $this->connection->connect_error;
-        exit();
-    }else{
-        //var_dump($connection);
-    }
 
- }
 
     function _construct($request){
     $this->request = $request;
@@ -30,12 +14,14 @@ var $connection;
         ];
         
     }
-    var $mail;
-     var $clave;
-     var $tipo;
-     var $valid_email;
-     var $valid_cont; 
+    public $mail;
+    public $clave;
+     public $tipo;
+     public $valid_email;
+     public $valid_cont; 
      public $nombre;
+     public $id;
+     public $ape;
      function correo(){
         $this->valid_email =$_POST["correo"];
      }
@@ -67,8 +53,8 @@ var $connection;
 
      
 
-       public function buscar(){
-        $this->cone();
+       public function buscarusuarios(){
+        include 'conexcion.php';
         $this->valid_email =$_POST["correo"];
         // var_dump($this->valid_email);
          $sql = "SELECT correo,clave,tipo FROM c_php.usuarios WHERE correo = '$this->valid_email'";
@@ -84,8 +70,8 @@ var $connection;
         }
  
        }
-       public function buscar2($info){
-        $this->cone();
+       public function buscarnombre($info){
+        include 'conexcion.php';
         
          $sql = "SELECT nombre FROM c_php.usuarios WHERE correo = '$info'";
          $result = $this->connection->query($sql);
@@ -109,7 +95,7 @@ var $connection;
             $corre = $_POST['email'];
             $clav = $_POST['clave'];
             $tipo ='U';
-            $this->cone();
+            include 'conexcion.php';
             
             $sql = "INSERT INTO c_php.usuarios (nombre,apellido,clave,correo,tipo) VALUES ('$nomb','$ape','$clav','$corre','$tipo')";
             $result = $this->connection->query($sql);
@@ -124,6 +110,118 @@ var $connection;
             
             
         }
+       
+        public $res;
+        public function mostrar_usuarios(){
+            
+            include 'conexcion.php';
+             
+                 $sql = "SELECT * FROM c_php.usuarios";
+                 $this->res = $this->connection->query($sql);
+    
+         
+               }
+        
+public function registrar_admin(){
+            $nomb = $_POST['Nombre'];
+            $ape = $_POST['ape'];
+            $corre = $_POST['email'];
+            $clav = $_POST['clave'];
+            $tipo =$_POST['tip'];
+            include 'conexcion.php';
+            
+            $sql = "INSERT INTO c_php.usuarios (nombre,apellido,clave,correo,tipo) VALUES ('$nomb','$ape','$clav','$corre','$tipo')";
+            $result = $this->connection->query($sql);
+
+                if($result){
+                    echo "<script type='text/javascript'>alert('Usuario Registrado');</script>";
+                    echo "<script type='text/javascript'>window.open('index.php','_self');</script>";
+                }else{
+                    echo "<script type='text/javascript'>alert('Hubo un error');</script>";
+
+                }
+}
+
+public function modificar_admin(){
+    $nomb = $_POST['Nombre'];
+    $ape = $_POST['ape'];
+    $corre = $_POST['email'];
+    $clav = $_POST['clave'];
+    $tipo =$_POST['tip'];
+    include 'conexcion.php';
+    
+    $sql = "UPDATE c_php.usuarios SET nombre='$nomb',apellido='$ape',clave='$clav',correo='$corre',tipo='$tipo' WHERE correo = '$corre'";
+    $result = $this->connection->query($sql);
+
+        if($result){
+            echo "<script type='text/javascript'>alert('Usuario Modoficado');</script>";
+            echo "<script type='text/javascript'>window.open('index.php','_self');</script>";
+        }else{
+            echo "<script type='text/javascript'>alert('Hubo un error al modificar');</script>";
+
+        }
+}
+public $resultado;
+function verproductos(){
+    include 'conexcion.php';
+             
+    $sql = "SELECT * FROM c_php.productos";
+    $this->resultado = $this->connection->query($sql);
+}
+//html nuevo para productos
+
+function insertarproduc(){
+            $nombre_p = $_POST['nombre'];
+            $cantidad_p = $_POST['cantidad'];
+            $precio_p = $_POST['precio'];
+            $descripcion_p = $_POST ['descrip'];
+            $tip = $_POST['tip'];
+            $arch = $_FILES['attached']['name'];
+            $uploaded = __DIR__ . DIRECTORY_SEPARATOR . 'fotos' . DIRECTORY_SEPARATOR . $_FILES['attached']['name'];
+
+            if(move_uploaded_file($_FILES['attached']['tmp_name'],$uploaded)){
+             echo "File attached properly.\n";
+            }else{
+                echo "Something went wrong!\n";
+                }
+            
+            //$imagen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+            include 'conexcion.php';
+            
+            $sql = "INSERT INTO c_php.productos (nombre,cantidad,precio,estado,foto,descripcion) VALUES ('$nombre_p','$cantidad_p','$precio_p','$tip','fotos/$arch','$descripcion_p')";
+            $result = $this->connection->query($sql);
+
+                if($result){
+                    echo "<script type='text/javascript'>alert('Producto Registrado');</script>";
+                   // echo "<script type='text/javascript'>window.open('index.php','_self');</script>";
+                }else{
+                    echo "<script type='text/javascript'>alert('Hubo un error');</script>";
+
+                }
+}
+
+public $ver_pro_usu;
+public function ver_productos_usuarios($ver){
+    include 'conexcion.php';
+             
+    $sql = "SELECT * FROM c_php.productos WHERE estado ='$ver' ";
+    $this->ver_pro_usu = $this->connection->query($sql);
+}
+//mostrar producto completo
+public $igrande,$ngrande,$pgrande,$dgrande;
+public function ver_grande($id){
+    include 'conexcion.php';
+             
+    $sql = "SELECT * FROM c_php.productos WHERE ID ='$id' ";
+    $resultado= $this->connection->query($sql);
+    while($row = $resultado->fetch_assoc()) {
+        
+        $this->igrande = $row['foto'];
+        $this->ngrande = $row['nombre'];
+        $this->pgrande = $row['precio'];
+        $this->dgrande = $row['descripcion'];
+}
+}
  }//final de clase
 ?>
 
