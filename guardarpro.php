@@ -18,6 +18,13 @@
     float:right;
   }
 </style>
+<style>
+body{
+    background-image: url("../productos.jpeg");
+    background-size: 1500px , 1500px;
+    background-position: center;
+}
+</style>
 <body>
     <?php
     if('POST'== $_SERVER['REQUEST_METHOD']){
@@ -26,24 +33,38 @@
     $form->insertarproduc();
     }
 ?>
+<button class="boton_personalizado" onclick="location.href='index.php'">Volver</button>
 <form enctype="multipart/form-data" action="<?php echo $_SERVER['REQUEST_URI']?>" method="post">
-
-<input type="text" name="nombre" placeholder="Producto"/>
-<input type="text" name="cantidad" placeholder="cantidad"/>
-<input type="text" name="precio" placeholder="Precio"/>
+<label><b>Nombre: </b></label>
+<input type="text" autocomplete ="off" name="nombre" placeholder="Producto"/>
+</br>
+</br>
+<label><b>Cantidad: </b></label>
+<input type="text" autocomplete ="off" name="cantidad" placeholder="cantidad"/>
+</br>
+</br>
+<label><b>Precio:</b> </label>
+<input type="text" autocomplete ="off" name="precio" placeholder="Precio"/>
+</br>
+</br>
+<label><b>Descripcion:</b> </label>
 <textarea name="descrip" placeholder="Descripcion"></textarea>
-
+</br>
+</br>
 <select class="boton_personalizado" name="tip">
     <option value="accesorios">Accesorios</option>
     <option value="partes">Partes</option>
     <option value="computadoras">Computadoras</option>
 </select>
-
+</br>
+</br>
+</br>
 
 <!-- imagenes -->
 <input type="file" name="attached" />
-
-<input type="submit"  value="Registrar"/>
+</br>
+</br>
+<input class="boton_personalizado" type="submit"  value="Registrar"/>
 
 
 </form>

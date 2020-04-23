@@ -33,7 +33,7 @@ class clase{
               //if($valid_email=='arielnova'&&$valid_cont==123){
 
              if($this->valid_email==$this->mail && $this->valid_cont==$this->clave && $this->tipo=='A'){
-                header('Location: /admin.php?correo='.$_POST['correo']);
+                header('Location: /admin.php?correo='.$_SESSION['correo']);
               //echo "<script type='text/javascript'>window.open('admin.php','_self');</script>";
              
            }else  if($this->valid_email==$this->mail && $this->valid_cont==$this->clave && $this->tipo=='U'){
@@ -51,11 +51,12 @@ class clase{
 
     
 
-     
+    
 
        public function buscarusuarios(){
         include 'conexcion.php';
-        $this->valid_email =$_POST["correo"];
+       $_SESSION['correo'] = $_POST["correo"];
+        $this->valid_email =$_SESSION['correo'];
         // var_dump($this->valid_email);
          $sql = "SELECT correo,clave,tipo FROM c_php.usuarios WHERE correo = '$this->valid_email'";
          $result = $this->connection->query($sql);
@@ -96,7 +97,17 @@ class clase{
             $clav = $_POST['clave'];
             $tipo ='U';
             include 'conexcion.php';
-            
+            $verificar_usuario= "SELECT * FROM c_php.usuarios Where correo ='$corre'";
+            $result = $this->connection->query($verificar_usuario);
+
+         while($row = $result->fetch_assoc()) {
+            $verificado = ['correo'];
+         }
+            if($verificado > 0 ){
+                echo '<script>
+                alert("El usuario ya esta registrado")
+                </script>';
+            }else{
             $sql = "INSERT INTO c_php.usuarios (nombre,apellido,clave,correo,tipo) VALUES ('$nomb','$ape','$clav','$corre','$tipo')";
             $result = $this->connection->query($sql);
 
@@ -107,7 +118,7 @@ class clase{
                     echo "<script type='text/javascript'>alert('Hubo un error');</script>";
 
                 }
-            
+            }
             
         }
        

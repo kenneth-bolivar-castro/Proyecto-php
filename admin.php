@@ -36,25 +36,11 @@ $name = $form->nombre;
 					<ul>
 						<li><a href="productos.php">Productos</a></li>
 						<li><a href="guardarpro.php">Ingresar Productos</a></li>
-						<li><a href="">Submenu3</a></li>
-						<li><a href="">Submenu4</a>
-							<ul>
-								<li><a href="">Submenu1</a></li>
-								<li><a href="">Submenu2</a></li>
-								<li><a href="">Submenu3</a></li>
-								<li><a href="">Submenu4</a></li>
-							</ul>
+						
 						</li>
 					</ul>
 				</li>
-				<li><a href="">Acerca de</a>
-					<ul>
-						<li><a href="">Submenu1</a></li>
-						<li><a href="">Submenu2</a></li>
-						<li><a href="">Submenu3</a></li>
-						<li><a href="">Submenu4</a></li>
-					</ul>
-				</li>
+				
 				<li><a href="index.php">Salir</a></li>
 			</ul>
 </div>

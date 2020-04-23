@@ -25,6 +25,13 @@
         font-size: 20px;
       }
     </style>
+    <style>
+body{
+    background-image: url("../productos.jpeg");
+    background-size: 1500px , 1500px;
+    background-position: center;
+}
+</style>
 <body>
     <?php
 include('clase.php');
@@ -57,39 +64,42 @@ while($row = $form->ver_pro_usu->fetch_assoc()){
    
     <th><p class="texto">¢<?php echo  $row['precio']; ?> </p></br></th>
     
-    <!-- <th><label>Descripcion</label></br><label><?php echo $row['descripcion'];?></label></br></br></th> -->
+    
 
     <th></br></br></br><button  name="m<?php echo $dato ?>" type="submit" class="boton_personalizado" method="post" value ="<?php echo $row['ID'] ?>"/>Ver</button></br></th>
     
-   
-     
+    <?php //var_dump($row['ID']); ?>
+    
     <!-- salto de linea -->
     <?php
     $data;
     if('POST'== $_SERVER['REQUEST_METHOD']){
-    
-    
+      
       
       if(isset($_POST['m'.$dato2])){
         header('Location: /infop.php?info='.$_POST['m'.$dato2]);
+       
        // $data = $_POST['m'.$dato2];
-        $dato2=1;
+        //$dato2=1;
+       // var_dump($_POST['m'.$dato2]);
+       
       }
       
       
       
       }
-    $dato++;
-    $dato2++;
+   // $dato++;
+   // $dato2++;
      if($cont==2){
-         
+      
         ?>
         </br>
         
         </tr>
          
          <?php
-        $cont=0;
+        $cont=-1;
+       
      }
 $cont++;
 
@@ -98,8 +108,9 @@ $cont++;
 <!-- fin de salto -->
 
     <?php
+      
  }
-
+ 
   ?>
   </table>
   

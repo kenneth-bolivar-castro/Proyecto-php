@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style type="text/css">
   .boton_personalizado{
     text-decoration: none;
@@ -15,6 +16,12 @@
     border: 2px solid #0016b0;
     float:right;
   }
+</style>
+<style>
+body{
+    background-image: url("https://k30.kn3.net/taringa/4/3/9/6/3/A/coreblue/3A0.jpg");
+    background-size: 1500px , 1500px;
+}
 </style>
     <title>Document</title>
 </head>
@@ -31,7 +38,7 @@ $form->mostrar_usuarios();
 
 </br>
 </br>
-<table border="1">
+<table class="table table-striped table-dark" border="2">
 <tr>
 <th>ID</th>
 <th>NOMBRE</th>

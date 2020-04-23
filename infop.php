@@ -24,6 +24,13 @@
         font-size: 20px;
       }
     </style>
+    <style>
+    body{
+    background-image: url("../productos.jpeg");
+    background-size: 1500px , 1500px;
+    background-position: center;
+}
+</style>
 <body>
     <?php
 include('clase.php');
@@ -39,14 +46,14 @@ $ides = $form->dgrande;
 ?>
 <input type="button" class="boton_personalizado" value="Salir" onclick="history.back()"/>
 <div class="texto" align="center">
-<img  src="<?php echo $imga ?>" >
-</br>
-<h3>Datos Producto</h3>
-</br>
-<h3><?php echo $inom ?></h3>
-</br>
-<h3>¢ <?php echo $ipre ?></h3>
-</br>
+<img style="width: 560px; height: 341px;"  src="<?php echo $imga ?>" >
+
+<h4>Datos Producto</h4>
+
+<h4><?php echo $inom ?></h4>
+
+<h4>¢ <?php echo $ipre ?></h4>
+
 <p><?php echo $ides ?></p>
 
 

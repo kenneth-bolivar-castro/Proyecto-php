@@ -39,8 +39,7 @@ if('POST'== $_SERVER['REQUEST_METHOD']){
   include ('clase.php');
     $form = new clase($_REQUEST);
     list($valid_email,$valid_cont)=$form->validate();
-    // var_dump($form);
-    //$form->conexion();
+	
 	$form->buscarusuarios();
 	$form->ingresar();
 	
@@ -60,7 +59,7 @@ if('POST'== $_SERVER['REQUEST_METHOD']){
 					</span>
           
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="correo" placeholder="Email">
+						<input class="input100" autocomplete ="off" type="text" name="correo" placeholder="Email">
             <?php if($valid_email):?>
 <div class="alert alert-danger" role="alert">
   Datos Incorrectos

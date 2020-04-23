@@ -19,7 +19,12 @@
 </style>
     <title>Productos</title>
 </head>
-
+<style>
+body{
+    background-image: url("https://k30.kn3.net/taringa/4/3/9/6/3/A/coreblue/3A0.jpg");
+    background-size: 1500px , 1500px;
+}
+</style>
 <body>
 <?php
 
